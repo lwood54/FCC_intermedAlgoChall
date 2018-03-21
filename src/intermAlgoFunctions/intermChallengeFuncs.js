@@ -1,4 +1,5 @@
-// Challenge 1: summ all numbers between high and low in given array range
+// CHALLENGE 1: Sum all numbers in a range
+// Tests for sumAll()
 export const sumAll = arr => {
   let upperLim = Math.max(...arr);
   let lowerLim = Math.min(...arr);
@@ -13,8 +14,8 @@ export const sumAll = arr => {
   return total;
 };
 
-// Challenge 2: compare 2 arrays and create a new array that holds only the values
-//      not found in both arrays.
+// CHALLENGE 2: Diff Two Arrays
+// Test for diffArray ==> compare 2 arrays and make array of differences
 export const diffArray = (arr1, arr2) => {
   let newArr = [];
   let diffArr1 = arr1.filter(num => {
@@ -32,8 +33,8 @@ export const diffArray = (arr1, arr2) => {
   return newArr;
 };
 
-// CHALLENGE 3: Convert any number to a Roman Numeral
-// jshint esversion: 6
+// CHALLENGE 3: Roman Numeral Converter
+// Convert any positive number to a Roman Numeral
 
 const getThous = num => {
   let placeHolder = Math.floor(num / 1000);
@@ -103,4 +104,47 @@ export const convertToRoman = num => {
   }
   num = numArray.join('');
   return num;
+};
+
+// CHALLENGE 4: Wherefor art thou
+// Look through an array of objects and find the matching objects
+// to a provided object's key/value pair
+export const whatIsInAName = (collection, source) => {
+  // What's in a name?
+  var arr = [];
+  // Only change code below this line
+  collection.map(item => {
+    let same = false;
+    for (var key in item) {
+      for (var k in source) {
+        if (key === k && item[key] === source[k]) {
+          same = true;
+        } else {
+          same = false;
+        }
+      }
+      if (same) {
+        arr.push(item);
+        same = false;
+      }
+    }
+  });
+  // Only change code above this line
+  return arr;
+};
+
+// CHALLENGE 5: Search and Replace
+// Find a string in a larger string and replace it with a provided string.
+// if the original string to be replaced is capitalized, then the replacement
+// string will need to be capitalized too
+export const myReplace = (str, before, after) => {
+  let newAfter = after;
+  if (before.charAt(0) === before.charAt(0).toUpperCase()) {
+    newAfter = after.split('');
+    newAfter[0] = newAfter[0].toUpperCase();
+    newAfter = newAfter.join('');
+  }
+  let re = new RegExp(before);
+  str = str.replace(re, newAfter);
+  return str;
 };
