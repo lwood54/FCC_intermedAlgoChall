@@ -148,3 +148,69 @@ export const myReplace = (str, before, after) => {
   str = str.replace(re, newAfter);
   return str;
 };
+
+// CHALLENGE 6: Pig Latin
+// translate a word into pig latin using the standard rules
+export const translatePigLatin = str => {
+  let newStr = str.split('');
+  let first = newStr[0].toLowerCase();
+  let chunk = '';
+  if (
+    first === 'a' ||
+    first === 'e' ||
+    first === 'i' ||
+    first === 'o' ||
+    first === 'u'
+  ) {
+    newStr.push('way');
+  } else if (first === 'c') {
+    if (str[1].toLowerCase() === 'h') {
+      chunk = newStr.splice(0, 2).join('');
+      newStr.push(chunk + 'ay');
+    }
+  } else if (first === 's') {
+    if (
+      str[1].toLowerCase() === 'h' ||
+      str[1].toLowerCase() === 'm' ||
+      str[1].toLowerCase() === 't'
+    ) {
+      chunk = newStr.splice(0, 2).join('');
+      newStr.push(chunk + 'ay');
+    }
+  } else if (first === 'g') {
+    if (str[1].toLowerCase() === 'l') {
+      chunk = newStr.splice(0, 2).join('');
+      newStr.push(chunk + 'ay');
+    }
+  }
+  if (str === newStr.join('')) {
+    // not sure why else {} wouldn't work here
+    let move = newStr.shift();
+    newStr.push(move + 'ay');
+  }
+  str = newStr.join('');
+  return str;
+};
+
+// CHALLENGE 7: DNA Pairing
+// create a new array matching the provided base with its pair
+export const pairElement = str => {
+  const handleCG = el => {
+    return el.toUpperCase() === 'C' ? 'G' : 'C';
+  };
+
+  const handleAT = el => {
+    return el.toUpperCase() === 'A' ? 'T' : 'A';
+  };
+  let arr = str.split('');
+  let newPairs = [];
+  arr.map((el, i) => {
+    if (el.toUpperCase() === 'C' || el.toUpperCase() === 'G') {
+      newPairs.push([el, handleCG(el)]);
+    } else if (el.toUpperCase() === 'A' || el.toUpperCase() === 'T') {
+      newPairs.push([el, handleAT(el)]);
+    }
+  });
+
+  return newPairs;
+};

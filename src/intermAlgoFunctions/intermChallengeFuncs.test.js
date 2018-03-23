@@ -3,7 +3,9 @@ import {
   diffArray,
   convertToRoman,
   whatIsInAName,
-  myReplace
+  myReplace,
+  translatePigLatin,
+  pairElement
 } from './intermChallengeFuncs';
 
 // CHALLENGE 1: Sum all numbers in a range
@@ -66,4 +68,26 @@ test('should find string in larger string and replace', () => {
   expect(myReplace(originalStr, strToRep, strToRepWith)).toBe(
     'He is Sitting on the couch'
   );
+});
+
+// CHALLENGE 6: Pig Latin
+// translate a word into pig latin using the standard rules
+test('should translate an english word into pig latin', () => {
+  const word = 'firehose';
+  expect(translatePigLatin('firehose')).toBe('irehosefay');
+});
+test('a word that starts with a vowel should translate according to rules', () => {
+  expect(translatePigLatin('algorithm')).toBe('algorithmway');
+});
+
+// CHALLENGE 7: DNA Pairing
+// create a new array matching the provided base with its pair
+test('should create an array of matching base pairs', () => {
+  expect(pairElement('ATCGA')).toEqual([
+    ['A', 'T'],
+    ['T', 'A'],
+    ['C', 'G'],
+    ['G', 'C'],
+    ['A', 'T']
+  ]);
 });
