@@ -214,3 +214,54 @@ export const pairElement = str => {
 
   return newPairs;
 };
+
+//CHALLENGE 8: Missing Letters
+// Find the missing letter in a provided string of
+// consecutive alphabetical letters.
+
+export const fearNotLetter = str => {
+  let alphabet = [
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z'
+  ];
+  let firstLetter = str.charAt(0);
+  let start = alphabet.indexOf(firstLetter);
+  let chunk = alphabet.slice(start, str.length + 1);
+  let compChunk = chunk.join('');
+  if (compChunk === str) {
+    str = undefined;
+    return str;
+  } else {
+    let flag = true;
+    let strArray = str.split('');
+    for (var i = 0; i < chunk.length; i++) {
+      if (chunk[i] !== strArray[i]) {
+        return chunk[i];
+      }
+    }
+  } // end else
+};

@@ -5,7 +5,8 @@ import {
   whatIsInAName,
   myReplace,
   translatePigLatin,
-  pairElement
+  pairElement,
+  fearNotLetter
 } from './intermChallengeFuncs';
 
 // CHALLENGE 1: Sum all numbers in a range
@@ -90,4 +91,11 @@ test('should create an array of matching base pairs', () => {
     ['G', 'C'],
     ['A', 'T']
   ]);
+});
+
+//CHALLENGE 8: Missing Letters
+// Find the missing letter in a provided string of
+// consecutive alphabetical letters.
+test('should identify the missing letter in a string', () => {
+  expect(fearNotLetter('abcdefghjklmno')).toBe('i');
 });
