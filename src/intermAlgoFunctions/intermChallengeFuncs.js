@@ -265,3 +265,77 @@ export const fearNotLetter = str => {
     }
   } // end else
 };
+
+// CHALLENGE 9: Boo Who?
+// This should provide an accurate test for boolean values.
+export const booWho = bool => {
+  let boolVal = '';
+  if (bool === null) {
+    return false;
+  } else if (isNaN(bool)) {
+    return false;
+  } else if (bool === true) {
+    return true;
+  }
+
+  boolVal = Boolean(bool).valueOf();
+  return !boolVal;
+};
+
+// CHALLENGE 10: Sorted Union
+// sorts 2 arrays and returns a new array of unique values
+
+// NOTE: This one works at FCC, but is locking up Jest for some reason.
+
+// export const uniteUnique = arr => {
+//   let newArr = Array.from(arguments);
+//   let combArr = [];
+//   for (let i = 0; i < newArr.length; i++) {
+//     combArr = combArr.concat(newArr[i]);
+//   }
+//   for (let i = 0; i < combArr.length; i++) {
+//     for (let j = i + 1; j < combArr.length; j++) {
+//       if (combArr[i] === combArr[j]) {
+//         combArr.splice(j, 1);
+//       }
+//     }
+//   }
+//   return combArr;
+// };
+
+// CHALLENGE 11: Convert HTML Entities
+// Should convert strings with their correct symbol matches
+// HTML conversion with Jest is messing this up
+// export const convertHTML = str => {
+//   // &colon;&rpar;
+//   let strArray = str.split('');
+//   let newArray = strArray.map(el => {
+//     switch (el) {
+//       case '&':
+//         return '&amp;';
+//       case '<':
+//         return '&lt;';
+//       case '>':
+//         return '&gt;';
+//       case '"':
+//         return '&quot;';
+//       case "'":
+//         return '&apos;';
+//       default:
+//         return el;
+//     }
+//   });
+//   str = newArray.join('');
+//   return str;
+// };
+
+// CHALLENGE 12: Spinal Tap Case
+// Convert a string to spinal tap case
+export const spinalCase = str => {
+  // "It's such a fine line between stupid, and clever."
+  // --David St. Hubbins
+  str = str.split(/[^a-zA-Z]/);
+  str = str.join('-');
+  str = str.replace(/[a-z](?=[A-Z])/g, '$&-').toLowerCase();
+  return str;
+};
