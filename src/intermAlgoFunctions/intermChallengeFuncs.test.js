@@ -10,7 +10,11 @@ import {
   booWho,
   uniteUnique,
   convertHTML,
-  spinalCase
+  spinalCase,
+  sumFibs,
+  sumPrimes,
+  smallestCommons,
+  findElement
 } from './intermChallengeFuncs';
 
 // CHALLENGE 1: Sum all numbers in a range
@@ -140,4 +144,33 @@ test('should convert a string to spinal-tap-case', () => {
 
 test('should convert edge case strings to spinal-tap-case', () => {
   expect(spinalCase('thisIsSpinalTap')).toBe('this-is-spinal-tap');
+});
+
+// CHALLENGE 13: Sum All Odd Fibonacci Numbers
+// Given a positive integer num, return the
+// sum of all odd Fibonacci numbers that are less than or equal to num.
+test('should return the sum of all odd Fibonacci numbers <= to number provided', () => {
+  expect(sumFibs(75024)).toBe(60696);
+});
+
+// CHALLENGE 14: Sum all Primes
+// Sum all prime numbers up to and including the provided number
+test('should return the sum of all primes up to and including number provided', () => {
+  expect(sumPrimes(977)).toBe(73156);
+});
+
+// CHALLENGE 15:
+test('should return smallest common multiple of all numbers between 2 numbers in an array', () => {
+  expect(smallestCommons([23, 18])).toBe(6056820);
+});
+
+// CHALLENGE 16:
+// Create a function that looks through an array (first argument) and returns
+// the first element in the array that passes a truth test (second argument).
+test('should return the first element that passes a truth test', () => {
+  expect(
+    findElement([1, 3, 5, 8, 9, 10], function(num) {
+      return num % 2 === 0;
+    })
+  ).toBe(8);
 });

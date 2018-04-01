@@ -339,3 +339,85 @@ export const spinalCase = str => {
   str = str.replace(/[a-z](?=[A-Z])/g, '$&-').toLowerCase();
   return str;
 };
+
+// CHALLENGE 13: Sum All Odd Fibonacci Numbers
+// Given a positive integer num, return the
+// sum of all odd Fibonacci numbers that are less than or equal to num.
+export const sumFibs = num => {
+  let fib = 1;
+  let prev = 1;
+  let newFib = 0;
+  const isOdd = n => {
+    return n % 2 !== 0 ? true : false;
+  };
+  let sum = 0;
+  while (newFib <= num) {
+    prev = fib;
+    fib = newFib;
+    if (isOdd(fib)) {
+      sum += fib;
+    }
+    newFib = prev + fib;
+  }
+
+  return sum;
+};
+
+// CHALLENGE 14: Sum all Primes
+// Sum all prime numbers up to and including the provided number
+export const sumPrimes = num => {
+  let sum = 0;
+  const isPrime = n => {
+    for (let i = 2; i < n; i++) {
+      if (n % i === 0) {
+        return false;
+      }
+    }
+    return n > 1;
+  };
+  for (let i = 2; i <= num; i++) {
+    if (isPrime(i)) {
+      sum += i;
+    }
+  }
+  return sum;
+};
+
+// CHALLENGE 15: Smallest Common Multiple
+// Find the smallest common multiple of the provided parameters that can be
+// evenly divided by both, as well as by all sequential numbers in the range
+// between these parameters.
+export const smallestCommons = arr => {
+  let upperLim = Math.max(...arr);
+  let lowerLim = Math.min(...arr);
+  let allNums = [];
+  for (var i = lowerLim; i <= upperLim; i++) {
+    allNums.push(i);
+  }
+
+  const gcd = (a, b) => {
+    return b === 0 ? a : gcd(b, a % b);
+  };
+
+  const lcm = (a, b) => {
+    return a * b / gcd(a, b);
+  };
+
+  let finalLCM = lowerLim;
+  allNums.forEach(n => {
+    finalLCM = lcm(n, finalLCM);
+  });
+
+  return finalLCM;
+};
+
+// CHALLENGE 16: Finders Keepers
+// Create a function that looks through an array (first argument) and returns the
+// first element in the array that passes a truth test (second argument).
+export const findElement = (arr, func) => {
+  var num = 0;
+  num = arr.filter(n => {
+    return func(n);
+  });
+  return num[0];
+};
